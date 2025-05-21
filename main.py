@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI
 from step_1_chunking.chunk_default import run_chunking
 from step_2_embedding.embed_default import run_embedding
-from step_3_storing_with_meta_data.vector_db_default import run_vector_db_insertion
+from step_3_storing_with_meta_data.vector_db_unchunked import run_vector_db_insertion
 from step_4_semantic_search.basic_semantic_search import query_documents
 from step_5_summarise_result.openai_gpt_4o import generate_summary
 

@@ -10,8 +10,10 @@ def upload_documents(client, chunks, collection_name, batch_size=100):
             PointStruct(
                 id=str(uuid.uuid4()),
                 vector=chunk["embedding"],
-                payload=chunk["metadata"] | {"text": chunk["text"]}
-            )
+                payload={
+                    "text": chunk["text"],
+                    **chunk["metadata"]  # ✅ Flatten metadata into payload
+                })
             for chunk in batch
         ]
         client.upsert(collection_name=collection_name, points=points)
