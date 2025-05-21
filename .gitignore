@@ -1,3 +1,4 @@
 .env
 bls_data
 bls_fast
+__pycache__/

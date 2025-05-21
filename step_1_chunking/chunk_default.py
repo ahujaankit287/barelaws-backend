@@ -1,13 +1,11 @@
-# chunk_default.py
-
 from datasets import load_dataset
-import os
-import json
 import uuid
 from textwrap import wrap
+from utils.file_io import write_jsonl  # ✅ Replaced custom save with utility
+import os
 
 # ---- Config ---- #
-OUTPUT_FILE = "chunks.json"
+OUTPUT_FILE = "bls_data/chunks.jsonl"
 CHUNK_SIZE = 500  # in words
 SPLIT_BY_PARAGRAPH = True
 
@@ -66,17 +64,12 @@ def chunk_dataset(dataset):
     print(f"✅ Chunked into {len(chunks)} chunks.")
     return chunks
 
-# ---- Save ---- #
-def save_chunks(chunks):
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(chunks, f, indent=2, ensure_ascii=False)
-    print(f"💾 Saved {len(chunks)} chunks to {OUTPUT_FILE}")
-
 # ---- Main ---- #
 def main():
     dataset = load_judgments()
     chunks = chunk_dataset(dataset)
-    save_chunks(chunks)
+    write_jsonl(OUTPUT_FILE, chunks)
+    print(f"💾 Saved to {OUTPUT_FILE}")
 
 if __name__ == "__main__":
     main()
