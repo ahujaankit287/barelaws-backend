@@ -11,8 +11,6 @@ services:
     ports:
       - "6333:6333" # Map host port 6333 to container port 6333 (HTTP API)
       - "6334:6334" # Map host port 6334 to container port 6334 (gRPC API)
-      # You can also map the UI port if you want to use the Qdrant UI:
-      - "8080:8080" # Map host port 8080 to container port 8080 (Web UI)
 
     volumes:
       # Mount a named volume to persist Qdrant data.
